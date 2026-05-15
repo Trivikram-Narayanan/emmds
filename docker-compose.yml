@@ -1,0 +1,69 @@
+version: "3.9"
+
+services:
+
+  # ── FastAPI Backend ──────────────────────────────────────────────────
+  emmds-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: emmds:latest
+    container_name: emmds-api
+    command: >
+      python -m uvicorn api.main:app
+      --host 0.0.0.0
+      --port 8000
+      --workers 1
+    ports:
+      - "8000:8000"
+    volumes:
+      - emmds-outputs:/app/outputs
+      - emmds-cache:/app/cache
+      - emmds-data:/app/data
+    environment:
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+  # ── Streamlit Frontend ───────────────────────────────────────────────
+  emmds-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: emmds:latest
+    container_name: emmds-ui
+    command: >
+      python -m streamlit run app/app.py
+      --server.port=8501
+      --server.address=0.0.0.0
+      --server.headless=true
+      --browser.gatherUsageStats=false
+    ports:
+      - "8501:8501"
+    volumes:
+      - emmds-outputs:/app/outputs
+      - emmds-cache:/app/cache
+      - emmds-data:/app/data
+    environment:
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+      - EMMDS_API_URL=http://emmds-api:8000
+    depends_on:
+      emmds-api:
+        condition: service_healthy
+    restart: unless-stopped
+
+# ── Persistent volumes ───────────────────────────────────────────────
+volumes:
+  emmds-outputs:
+    driver: local
+  emmds-cache:
+    driver: local
+  emmds-data:
+    driver: local

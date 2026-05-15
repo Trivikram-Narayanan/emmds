@@ -1,0 +1,44 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Git
+.git/
+.gitignore
+
+# Outputs and cache (mounted as volumes)
+outputs/
+cache/
+
+# Test artifacts
+.pytest_cache/
+htmlcov/
+.coverage
+*.egg-info/
+
+# Notebooks (not needed in container)
+notebooks/
+
+# Docker files themselves
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# OS
+.DS_Store
+Thumbs.db

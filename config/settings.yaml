@@ -1,0 +1,96 @@
+system:
+  name: EMMDS
+  version: "3.0.0"
+  description: "Ensemble Multi-Model Decision System — Research Grade"
+
+paths:
+  data_raw: "data/raw"
+  data_processed: "data/processed"
+  outputs_models: "outputs/models"
+  outputs_reports: "outputs/reports"
+  outputs_plots: "outputs/plots"
+  outputs_research: "outputs/research"
+
+training:
+  test_size: 0.2
+  random_state: 42
+  cv_folds: 5
+  max_iter: 1000
+
+models:
+  enabled:
+    - logistic_regression
+    - lda
+    - decision_tree
+    - random_forest
+    - extra_trees
+    - gradient_boosting
+    - hist_gradient_boosting
+    - knn
+    - naive_bayes
+    - mlp
+
+evaluation:
+  primary_metric: "f1_weighted"
+  secondary_metric: "accuracy"
+
+# Empirically derived weights (v3.0) — do NOT change without rerunning
+# meta-weight experiments. Source: direction1_meta_weights.py LOO search.
+# w_accuracy=0.05, w_calibration=0.10, w_agreement=0.10,
+# w_data_quality=0.35, w_stability=0.40
+trust_score:
+  accuracy_weight:     0.05
+  calibration_weight:  0.10
+  agreement_weight:    0.10
+  data_quality_weight: 0.35
+  stability_weight:    0.40
+
+explainability:
+  shap_max_samples: 100
+  lime_num_features: 10
+  lime_num_samples: 500
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: true
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s | %(levelname)s | %(name)s | %(message)s"
+
+data_quality:
+  completeness_weight: 0.30
+  uniqueness_weight:   0.20
+  consistency_weight:  0.20
+  balance_weight:      0.15
+  noise_weight:        0.15
+
+model_recommender:
+  small_dataset_threshold:    200
+  large_dataset_threshold:    20000
+  high_dim_ratio_threshold:   0.1
+  high_cardinality_threshold: 100
+  high_correlation_threshold: 0.5
+  high_noise_threshold:       2.0
+
+experiment_tracker:
+  log_dir: "outputs/logs"
+  use_mlflow: false
+
+model_saver:
+  model_dir: "outputs/models"
+
+benchmark:
+  n_meta_train_datasets: 30
+  n_meta_test_datasets:  20
+  n_seeds: 5
+  baselines:
+    - accuracy_only
+    - f1_only
+    - cv_only
+    - calibration_only
+    - agreement_only
+    - softmax_confidence
+    - random_selector
+    - oracle

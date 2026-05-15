@@ -1,0 +1,17 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.DS_Store
+*.pkl
+*.joblib
+*.h5
+outputs/
+data/*.csv
+data/openml_cache/
+.env
+*.log
