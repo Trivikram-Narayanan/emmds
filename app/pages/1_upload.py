@@ -25,7 +25,7 @@ st.markdown("""<style>
 [data-testid="stDataFrame"]{border:1px solid #0f2340;border-radius:10px}
 hr{border-color:#0f2340!important;margin:1.5rem 0!important}
 .stSuccess{background:#042010!important;border-left:3px solid #22c55e!important;border-radius:8px!important}
-.stWarning{background:#15100!important;border-left:3px solid #f59e0b!important;border-radius:8px!important}
+.stWarning{background:#151000!important;border-left:3px solid #f59e0b!important;border-radius:8px!important}
 .stError{background:#130805!important;border-left:3px solid #ef4444!important;border-radius:8px!important}
 .stInfo{background:#060f1f!important;border-left:3px solid #3b82f6!important;border-radius:8px!important}
 [data-testid="stFileUploader"]{background:#0b1628;border:2px dashed #0f2340;border-radius:12px}

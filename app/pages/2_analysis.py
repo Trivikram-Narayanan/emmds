@@ -11,23 +11,30 @@ import streamlit as st
 
 st.set_page_config(page_title="Analysis | EMMDS", page_icon="📊", layout="wide")
 st.markdown("""<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap');
-html,[class*="css"]{font-family:'DM Sans',sans-serif}
-.stApp{background:#070c18}
-[data-testid="stSidebar"]{background:#0d1220!important;border-right:1px solid #1e2d45}
-[data-testid="metric-container"]{background:#0f1929;border:1px solid #1e2d45;border-radius:10px}
-.stButton>button{background:#1e3a5f;color:#7dd3fc;border:1px solid #2d6a9f;border-radius:8px;font-weight:500}
-.stButton>button[kind="primary"]{background:linear-gradient(135deg,#1e40af,#7c3aed);border:none;color:#fff;font-weight:600}
-.stTabs [data-baseweb="tab-list"]{background:#0f1929;border-radius:8px;padding:.2rem}
-.stTabs [aria-selected="true"]{background:#1e3a5f!important;color:#7dd3fc!important}
-hr{border-color:#1e2d45!important}
-.stSuccess{background:#052e16!important;border-left:3px solid #4ade80!important}
-.stWarning{background:#1c1003!important;border-left:3px solid #fbbf24!important}
-.stError{background:#1c0505!important;border-left:3px solid #f87171!important}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+*,[class*="css"]{font-family:'Inter',sans-serif!important}
+.stApp{background:#05090f}
+[data-testid="stSidebar"]{background:#080f1a!important;border-right:1px solid #0f2340}
+[data-testid="metric-container"]{background:#0b1628;border:1px solid #0f2340;border-radius:12px;padding:.9rem 1.1rem!important}
+[data-testid="metric-container"] label{color:#475569!important;font-size:.72rem!important;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+[data-testid="metric-container"] [data-testid="metric-value"]{color:#f1f5f9!important;font-size:1.5rem!important;font-weight:700!important}
+.stButton>button{background:#0f2040;color:#60a5fa;border:1px solid #1e3a5f;border-radius:9px;font-weight:500;transition:all .2s}
+.stButton>button:hover{background:#162f55;border-color:#3b82f6;transform:translateY(-1px)}
+.stButton>button[kind="primary"]{background:linear-gradient(135deg,#1d4ed8,#7c3aed);border:none;color:#fff;font-weight:600}
+.stTabs [data-baseweb="tab-list"]{background:#0b1628;border-radius:10px;padding:.25rem;border:1px solid #0f2340}
+.stTabs [data-baseweb="tab"]{background:transparent;color:#475569;border-radius:8px;font-size:.84rem;font-weight:500;padding:.45rem 1rem;border:none}
+.stTabs [aria-selected="true"]{background:#112240!important;color:#60a5fa!important}
+[data-testid="stDataFrame"]{border:1px solid #0f2340;border-radius:10px}
+hr{border-color:#0f2340!important;margin:1.5rem 0!important}
+.stSuccess{background:#042010!important;border-left:3px solid #22c55e!important;border-radius:8px!important}
+.stWarning{background:#151000!important;border-left:3px solid #f59e0b!important;border-radius:8px!important}
+.stError{background:#130805!important;border-left:3px solid #ef4444!important;border-radius:8px!important}
+.stInfo{background:#060f1f!important;border-left:3px solid #3b82f6!important;border-radius:8px!important}
 </style>""", unsafe_allow_html=True)
 
-DARK = dict(plot_bgcolor="#0d1117", paper_bgcolor="#0d1117", font_color="#e2e8f0",
-            margin=dict(l=10,r=10,t=45,b=10))
+DARK = dict(plot_bgcolor="#080f1a", paper_bgcolor="#080f1a",
+            font=dict(color="#94a3b8", family="Inter"),
+            margin=dict(l=10, r=10, t=45, b=10))
 
 if "df" not in st.session_state or st.session_state.df is None:
     st.warning("⚠️ No dataset loaded. Go to **📁 Upload** first.")

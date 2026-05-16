@@ -12,28 +12,33 @@ import streamlit as st
 
 st.set_page_config(page_title="Research | EMMDS", page_icon="🔬", layout="wide")
 st.markdown("""<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap');
-html,[class*="css"]{font-family:'DM Sans',sans-serif}
-.stApp{background:#070c18}
-[data-testid="stSidebar"]{background:#0d1220!important;border-right:1px solid #1e2d45}
-[data-testid="metric-container"]{background:#0f1929;border:1px solid #1e2d45;border-radius:10px}
-.stTabs [data-baseweb="tab-list"]{background:#0f1929;border-radius:8px;padding:.2rem}
-.stTabs [aria-selected="true"]{background:#1e3a5f!important;color:#7dd3fc!important}
-hr{border-color:#1e2d45!important}
-.stSuccess{background:#052e16!important;border-left:3px solid #4ade80!important}
-.stInfo{background:#0c1e33!important;border-left:3px solid #60a5fa!important}
-.stWarning{background:#1c1003!important;border-left:3px solid #fbbf24!important}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+*,[class*="css"]{font-family:'Inter',sans-serif!important}
+.stApp{background:#05090f}
+[data-testid="stSidebar"]{background:#080f1a!important;border-right:1px solid #0f2340}
+[data-testid="metric-container"]{background:#0b1628;border:1px solid #0f2340;border-radius:12px;padding:.9rem 1.1rem!important}
+[data-testid="metric-container"] label{color:#475569!important;font-size:.72rem!important;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+[data-testid="metric-container"] [data-testid="metric-value"]{color:#f1f5f9!important;font-size:1.5rem!important;font-weight:700!important}
+.stTabs [data-baseweb="tab-list"]{background:#0b1628;border-radius:10px;padding:.25rem;border:1px solid #0f2340}
+.stTabs [data-baseweb="tab"]{background:transparent;color:#475569;border-radius:8px;font-size:.84rem;font-weight:500;padding:.45rem 1rem;border:none}
+.stTabs [aria-selected="true"]{background:#112240!important;color:#60a5fa!important}
+[data-testid="stDataFrame"]{border:1px solid #0f2340;border-radius:10px}
+hr{border-color:#0f2340!important;margin:1.5rem 0!important}
+.stSuccess{background:#042010!important;border-left:3px solid #22c55e!important;border-radius:8px!important}
+.stWarning{background:#151000!important;border-left:3px solid #f59e0b!important;border-radius:8px!important}
+.stInfo{background:#060f1f!important;border-left:3px solid #3b82f6!important;border-radius:8px!important}
 </style>""", unsafe_allow_html=True)
 
-DARK = dict(plot_bgcolor="#0d1117", paper_bgcolor="#0d1117", font_color="#e2e8f0",
+DARK = dict(plot_bgcolor="#080f1a", paper_bgcolor="#080f1a",
+            font=dict(color="#94a3b8", family="Inter"),
             margin=dict(l=20, r=20, t=50, b=20))
-RES_DIR = Path("outputs/research")
+RES_DIR = Path(__file__).parent.parent.parent / "outputs" / "research"
 
 st.markdown("""
 <div style="margin-bottom:1.5rem;">
   <h1 style="color:#e2e8f0;margin:0;">🔬 Research Results</h1>
   <p style="color:#64748b;margin:.3rem 0 0;">
-    Experimental validation of the EMMDS Trust Score across 12 datasets.
+    Experimental validation of the EMMDS Trust Score across 20 datasets.
   </p>
 </div>""", unsafe_allow_html=True)
 
@@ -76,7 +81,7 @@ st.markdown("""
   <div style="color:#e2e8f0;font-size:1rem;line-height:1.6;">
     The EMMDS Trust Score — combining accuracy, calibration, agreement, data quality, and stability —
     is a statistically significant predictor of deployment risk
-    <span style="color:#4ade80;font-weight:600;">(Spearman r = −0.578, p &lt; 0.001)</span>.
+    <span style="color:#4ade80;font-weight:600;">(Spearman r = −0.773, p &lt; 0.001)</span>.
     Cross-model agreement outperforms softmax confidence as a reliability proxy
     <span style="color:#4ade80;font-weight:600;">(AUC 0.874 vs 0.569)</span>.
   </div>
